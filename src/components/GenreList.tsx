@@ -13,9 +13,10 @@ import getCroppedImgUrl from "../services/img-url";
 //This was wriiten to notify the parent component that genre has been selected. Here in this case the parent component is App Component.
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) {
@@ -36,6 +37,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
                 onSelectGenre(genre);
               }}
               variant="link"
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               fontSize="lg"
             >
               {genre.name}
