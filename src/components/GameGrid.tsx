@@ -17,7 +17,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       <Stack margin={10} spacing={3}>
         <Alert status="error">
           <AlertIcon />
-          There was an error processing your request: {error}
+          There was an error processing your request: {error.message}
         </Alert>
       </Stack>
     );
@@ -34,7 +34,7 @@ const GameGrid = ({ gameQuery }: Props) => {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>
